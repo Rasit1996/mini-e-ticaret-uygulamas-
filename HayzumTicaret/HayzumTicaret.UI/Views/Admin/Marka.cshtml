@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Marka";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using HayzumTicaret.UI.Models;
+
+@section resim{
+   
+    <div class="form-group göster" tabindex="-1" role="dialog" aria-hidden="true">
+        
+    </div>
+    }
+<section class="panel">
+    <header class="panel-heading">
+        Markalar Tablosu
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <div class="clearfix">
+                <div class="btn-group">
+
+                    <a href="/Admin/MarkaEkle" class="btn btn-success">
+                        Yeni Marka Ekle <i class="icon-bar"></i>
+                    </a>
+                </div>
+
+            </div>
+            <br />
+            <div class="space15"></div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                    <thead>
+                        <tr>
+                            <th>Marka Adı</th>
+                            <th>Açıklama</th>
+                            <th>Resim</th>
+                            <th>Düzenle</th>
+                            <th>Sil</th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (Marka mr in ViewBag.marka)
+                        {
+                            <tr class="">
+                                <td>@mr.Adi</td>
+                                <td>@mr.Aciklama</td>
+                                <td id="resim"><a class="btn rs" href="#" data-rsid="@mr.ResimID"><i class="fa fa-dashboard"></i></a></td>                              
+                                <td><a class="edit" href="javascript:;">Düzenle</a></td>
+                                <td><a class="delete" href="javascript:;">Sil</a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section script{
+    <script>
+        $(document).on("click", ".rs", function () {
+      
+            var id = $(this).data("rsid");
+            $.ajax({
+                type: "GET",
+                url: "/Admin/ResimGoster/" + id,
+                datatype: "html",
+                success: function (data) {
+                    $(".göster").hide();
+                    $(".göster").html(data);
+                    $(".göster").show(1000);
+                  
+                },
+                error: function () {
+                    alert("hata");
+                }
+
+            })
+        })
+        $(document).on("click", ".kaldir", function () {
+            $(".göster").hide(1000);
+            //$.ajax({
+            //    type: "GET",
+            //    url:"/Admin/Marka",
+            //    success:function myfunction() {
+            //        alert("başarılı");
+            //    },
+            //    error:function () {
+            //        alert("hata");
+            //    }
+            //})
+            
+            //var id = $(".rs").data("rsid");
+            //$("#re").html('<a class="btn rs" href="#" data-rsid="'+id+'"><i class="fa fa-dashboard"></i></a>');
+        })
+    </script>
+    }
+
+
+

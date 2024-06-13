@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Özellik Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using HayzumTicaret.UI.Models
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+               Ürün Özellik Ekleme Sayfası
+            </header>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="commentForm" method="post" action="/Admin/UrunOzellikEkle">
+                        
+                        
+
+                        <div class="form-group ">
+                            <label for="cemail" class="control-label col-lg-2">Ürünler:</label>
+                            <div class="col-lg-10">
+                                <select class="form-control ur" name="UrunID">
+                                    <option selected="selected" disabled="disabled">Seç</option>
+                                    @foreach (Urun item in ViewBag.urunler)
+                                    {
+                                        <option value="@item.id" >@item.Adi</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="tip">@Html.Partial("/Views/Admin/UrunOzellikTip.cshtml")</div>
+                       <div class="form-group" id="deger">@Html.Partial("/Views/Admin/UrunOzellikDeger.cshtml")</div>
+                       
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10" >
+                                <button class="btn btn-danger" type="submit">Kaydet</button>
+                                <a href="/Admin/UrunOzellik" class="btn btn-default" type="button">İptal</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section script{ 
+
+
+<script>
+    $(".ur").change(function () {
+        var id = $(this).val();
+
+        $.ajax({
+            type: "GET",
+            url: "/Admin/UrunOzellikTip/" + id,
+            datatype: "html",
+            success: function (data) {
+               
+                $("#tip").html(data);
+                
+            },
+            error:function () {
+                alert("Hata");
+        }
+        })
+    })
+    
+        $(document).on("change",".tip",function () {
+            var id = $(this).val();
+            
+            $.ajax({
+                type: "GET",
+                url: "/Admin/UrunOzellikDeger/" + id,
+                datatype: "html",
+                success: function (data) {
+                    $("#deger").html(data);
+                    
+                },
+                error: function () {
+                    alert("Hata");
+                }
+            })
+        })
+   
+   
+
+   
+</script>
+  
+}
+    
+    
+    
+    
+
+

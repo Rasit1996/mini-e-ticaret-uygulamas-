@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Özellik";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using HayzumTicaret.UI.Models
+
+@model List<UrunOzellik>
+<section class="panel">
+    <header class="panel-heading">
+       Ürün özellikleri Tablosu
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <div class="clearfix">
+                <div class="btn-group">
+
+                    <a href="/Admin/UrunOzellikEkle" class="btn btn-success">
+                        Yeni Özellik Ekle <i class="icon-bar"></i>
+                    </a>
+                </div>
+
+            </div>
+            <br />
+            <div class="space15"></div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                    <thead>
+                        <tr>
+                            <th>Urun Adı</th>
+                            <th>Ozellik Adı</th>
+                            <th>Oozellik Değer Adı</th>
+                            <th>Sil</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (UrunOzellik ozellik in Model)
+                        {
+                            <tr class="">
+                                @if (ozellik.Urun != null)
+                                {
+                                    <td>@ozellik.Urun.Adi</td>
+                                }
+                                @if (ozellik.OzellikTip1 != null)
+                                {
+                                    <td>@ozellik.OzellikTip1.Adi</td>
+                                }
+                                @if (ozellik.OzellikDeger1 != null)
+                                {
+                                    <td>@ozellik.OzellikDeger1.Adi</td>
+                                }
+                               
+                                 @if (ozellik.Urun != null && ozellik.OzellikTip1 != null && ozellik.OzellikDeger1 != null)
+                                 {
+                                    <td><a class="delete" href='@Url.Action("UrunOzellikSil","Admin", 
+                                   new {urunID=ozellik.UrunID,ozelliktipID=ozellik.OzellikTip,ozellikdegerID=ozellik.OzellikDeger })'>
+                                Sil</a></td>
+
+                                 }
+
+                               
+                                
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

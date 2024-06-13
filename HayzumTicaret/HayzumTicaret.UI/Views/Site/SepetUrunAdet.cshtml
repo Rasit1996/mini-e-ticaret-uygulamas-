@@ -1,0 +1,24 @@
+﻿
+@using HayzumTicaret.UI.Models
+@{  HttpCookie adet;
+    if (!User.Identity.IsAuthenticated)
+    {
+         adet = Request.Cookies["Adet"];
+    }
+    else
+    {
+         adet = Request.Cookies[User.Identity.Name];
+    }
+
+
+    if (adet==null)
+    {
+    <i class="fa fa-shopping-cart"></i><span class="hidden-sm">Sepetteki Ürün Sayısı 0</span>
+    }
+    else
+    {
+        ViewBag.adet = adet.Value;
+    <i class="fa fa-shopping-cart"></i><span class="hidden-sm">Sepetteki Ürün Sayısı  @ViewBag.adet</span>
+        }
+    }
+

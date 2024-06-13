@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "OzelllikTip";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using HayzumTicaret.UI.Models
+@model List<OzellikTip>
+
+
+<section class="panel">
+    <header class="panel-heading">
+        Özellikler Tablosu
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <div class="clearfix">
+                <div class="btn-group">
+
+                    <a href="/Admin/OzellikTipEkle" class="btn btn-success">
+                        Özellik Tip Ekle <i class="icon-bar"></i>
+                    </a>
+                </div>
+
+            </div>
+            <br />
+            <div class="space15"></div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                    <thead>
+                        <tr>
+                            <th>Özellik Adı</th>
+                            <th>Açıklama</th>
+                            <th>Kategori</th>
+                            <th>Düzenle</th>
+                            <th>Sil</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (OzellikTip ot in Model)
+                        {
+                            <tr class="">
+                                <td>@ot.Adi</td>
+                                <td>@ot.Aciklama</td>
+                                <td>@ot.Kategori.Adi</td>
+
+
+                                <td><a class="edit" href="/Admin/OzellikTipGüncelle/@ot.id">Düzenle</a></td>
+                                <td><a class="delete" href="/Admin/OzellikTipSil/@ot.id">Sil</a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+

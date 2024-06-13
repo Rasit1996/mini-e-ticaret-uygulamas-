@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using HayzumTicaret.UI.Models
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Ürün Ekleme Sayfası
+            </header>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form"  id="commentForm" method="post" action="/Admin/UrunEkle">
+                        <div class="form-group" >
+                            <label for="cname" class="control-label col-lg-2">Urun Adı:</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="cname" name="Adi"  type="text" required placeholder="Ad..." />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="cemail" class="control-label col-lg-2">Açıklama</label>
+                            <div class="col-lg-10">
+                                <input class="form-control " id="cemail" type="text" name="Aciklama" required placeholder="Açıklama..." />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="curl" class="control-label col-lg-2">Alış Fiyatı:</label>
+                            <div class="col-lg-10">
+                                <input class="form-control " id="curl" type="number" name="AlisFiyati" />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="ccomment" class="control-label col-lg-2">Satış Fiyatı:</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control "  name="SatisFiyati" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ccomment" class="control-label col-lg-2">Kategoriler:</label>
+                            <div class="col-lg-10">
+                                <select name="KategoriID" class="form-control">
+                                    @foreach (Kategori kt in ViewBag.Kategori)
+                                    {
+                                        <option value="@kt.id">@kt.Adi</option>
+                                    }
+
+
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="ccomment" class="control-label col-lg-2">Markalar</label>
+                            <div class="col-lg-10"> 
+                                <select  name="MarkaID" class="form-control">
+                                    @foreach (Marka mr in ViewBag.Marka)
+                                    {
+                                        <option value="@mr.id">@mr.Adi</option>
+                                    }
+                                </select>
+                            </div>
+                            
+                            </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Son Kullanma Tarihi</label>
+                            <div class="col-md-4">
+                                <div data-date="2012-12-21T15:25:00Z" class="input-group date form_datetime-meridian">
+                                    <input type="text" class="form-control" readonly="" size="16">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-danger date-reset"><i class="fa fa-times"></i></button>
+                                        <button type="button" class="btn btn-info date-set"><i class="fa fa-calendar"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit">Kaydet</button>
+                                <a href="/Admin/Urun" class="btn btn-default" type="button">İptal</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

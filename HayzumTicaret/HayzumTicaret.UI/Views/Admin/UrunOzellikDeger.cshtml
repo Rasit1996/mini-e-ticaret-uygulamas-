@@ -1,0 +1,19 @@
+﻿
+
+
+    <label for="ccomment" class="control-label col-lg-2">Özellik Değerleri:</label>
+    <div class="col-lg-10">
+        <select name="OzellikDeger" class="form-control deger">
+            <option selected disabled>...</option>
+            @if (ViewBag.degerler!=null)
+            {
+              foreach (var od in ViewBag.degerler)
+                 {
+                     <option value="@od.id">@od.Adi</option>
+                 }
+            }
+             
+
+
+        </select>
+    </div>

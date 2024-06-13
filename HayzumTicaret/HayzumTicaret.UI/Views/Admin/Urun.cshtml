@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Urun";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using  HayzumTicaret.UI.Models;
+@model List<Urun>
+
+<section class="panel">
+    <header class="panel-heading">
+        Ürünler Tablosu
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <div class="clearfix">
+                <div class="btn-group">
+
+                    <a href="/Admin/UrunEkle" class="btn btn-success">
+                        Yeni Ürün Ekle <i class="icon-bar"></i>
+                    </a>
+                </div>
+                
+            </div>
+            <br />
+            <div class="space15"></div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                    <thead>
+                        <tr>
+                            <th>Urun Adı</th>
+                            <th>Açıklama</th>
+                            <th>Kategori</th>
+                            <th>Marka</th>
+                            <th>Alış Fiyatı</th>
+                            <th>Satış Fiyatı</th>
+                            <th>Resim Ekle</th>
+                            <th>Ekleme Tarihi</th>
+                            <th>Son Kullanma Tarihi</th>
+                            <th>Düzenle</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                            @foreach (Urun urn in Model)
+                            {
+                                <tr class="">
+                                    <td>@urn.Adi</td>
+                                    <td>@urn.Aciklama</td>
+                                    <td>@urn.Kategori.Adi</td>
+                                    <td>@urn.Marka.Adi</td>
+                                    <td>@urn.AlisFiyati</td>
+                                    <td>@urn.SatisFiyati</td>
+                                    <td><a class="edit" href="@Url.Action("UrunResimEkle","Admin", new { urn.id })"><i class="fa fa-dashboard"></i></a></td>
+                                    <td>@urn.EklenmeTarihi</td>
+                                    <td>@urn.SonKullanmaTarihi</td>
+                                    
+                                    <td><a class="edit" href="javascript:;">Düzenle</a></td>
+                                    <td><a class="delete" href="javascript:;">Sil</a></td>
+                                </tr>
+                            }
+                                               
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

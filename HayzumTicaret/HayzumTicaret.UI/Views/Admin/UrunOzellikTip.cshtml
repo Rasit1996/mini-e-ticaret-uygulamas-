@@ -1,0 +1,28 @@
+﻿
+
+
+    <label for="ccomment" class="control-label col-lg-2">Özellik Tipler:</label>
+    <div class="col-lg-10">
+        <select name="OzellikTip" class="form-control tip">
+            <option selected disabled>...</option>
+           
+            @if (ViewBag.ozellikler != null)
+            {
+                foreach (var ot in ViewBag.ozellikler)
+                {
+                    <option value="@ot.id">@ot.Adi</option>
+                }
+            }
+           
+            
+           
+
+
+        </select>
+    </div>
+
+
+
+
+
+
